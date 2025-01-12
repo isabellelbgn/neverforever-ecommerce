@@ -114,22 +114,20 @@ export default function CartPage() {
     }
   };
 
-  const removeFromCart = async (itemId) => {
+  const removeFromCart = async (so_item_id) => {
     try {
-      console.log("Removing item with itemId:", itemId);
-      await axios.delete(`http://localhost:8082/removefromcart/${itemId}`);
-      await axios.put("http://localhost:8082/updatecarttotal");
+      console.log("Removing item with itemId:", so_item_id);
+      await axios.delete(`http://localhost:8082/removefromcart/${so_item_id}`);
       fetchCartItems();
     } catch (error) {
       console.error("Error removing item from cart:", error);
     }
   };
 
-  const addQtyToCart = async (itemId) => {
+  const addQtyToCart = async (so_item_id) => {
     try {
-      console.log("Incrementing quantity for item with itemId:", itemId);
-      await axios.put(`http://localhost:8082/addquantitytocart/${itemId}`);
-      await axios.put("http://localhost:8082/updatecarttotal");
+      console.log("Incrementing quantity for item with itemId:", so_item_id);
+      await axios.put(`http://localhost:8082/addquantitytocart/${so_item_id}`);
       fetchCartItems();
     } catch (error) {
       console.error("Error incrementing quantity:", error);
@@ -173,7 +171,7 @@ export default function CartPage() {
           ) : (
             <>
               {cartItems.map((item) => (
-                <Box key={item.product_id} className="cart-item">
+                <Box key={item.so_item_id} className="cart-item">
                   <ProductImageBox>
                     <img src={item.product_image} alt={item.product_name} />
                   </ProductImageBox>
